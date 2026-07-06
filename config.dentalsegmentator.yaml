@@ -1,0 +1,53 @@
+# ============================================================================
+# DentalSegmentator configuration + trained ROOT model.
+#
+# TWO models are used here:
+#   nnunet.model_dir  -> DentalSegmentator (teeth + bone). NOT the root model.
+#   root.model_dir    -> your trained root model (Dataset202_RootCBCT).
+# Run:  python run.py -i data/scan.nii.gz -o out/ -c config.dentalsegmentator.yaml
+# ============================================================================
+
+nnunet:
+  backend: "python"
+  # >>> PUT YOUR DENTALSEGMENTATOR (Dataset111_453CT) FOLDER HERE <<<
+  # This is the teeth+bone model, NOT the root model. Use forward slashes.
+  # e.g. 'C:/Users/seoul/.../nnUNet_results/Dataset111_453CT/nnUNetTrainer__nnUNetPlans__3d_fullres'
+  model_dir: 'C:/Users/seoul/Desktop/Joontae/cbct-trabecular-pipeline/cbct-trabecular-pipeline/Dataset111_453CT/nnUNetTrainer__nnUNetPlans__3d_fullres'
+  folds: "0"
+  checkpoint: "checkpoint_final.pth"
+  device: "cuda"
+  disable_tta: false
+
+arches:
+  lower:
+    name: "Mandible"
+    bone_labels: [2]
+    teeth_labels: [4]
+    crown_direction: "superior"
+  upper:
+    name: "Maxilla & Upper bone"
+    bone_labels: [1]
+    teeth_labels: [3]
+    crown_direction: "inferior"
+
+dominance:
+  metric: "bone"
+
+root:
+  # "model" = use your trained nnU-Net root model (below).
+  # "heuristic" = use the geometric cutoff (needs no root model).
+  method: "model"
+  model_dir: "C:/Users/seoul/Desktop/Joontae/cbct-trabecular-pipeline/cbct-trabecular-pipeline/training/nnUNet/nnUNet_results/Dataset202_RootCBCT/nnUNetTrainer__nnUNetPlans__3d_fullres"
+  folds: "0"                 # you trained fold 0 only
+  checkpoint: "checkpoint_final.pth"
+  device: "cuda"
+  root_label: 1              # the root class id in the model output
+
+  # --- heuristic params (used only if method: heuristic) ---
+  bone_close_mm: 1.0
+  smooth_iter: 1
+  top_smooth_mm: 1.5
+
+output:
+  teeth_name: "teeth"
+  root_name: "travecular"

@@ -1,0 +1,45 @@
+# ---- Patient data & models (NEVER commit) --------------------------------
+# CBCT scans and masks
+*.nii
+*.nii.gz
+training/data/
+data/
+# nnU-Net working folders (large; regenerate locally)
+training/nnUNet/
+training/pred_in/
+training/pred_out
+# trained weights / checkpoints
+*.pth
+*.pt
+
+# ---- Pipeline outputs -----------------------------------------------------
+out/
+outputs/
+_uploads/
+*_preview_*.png
+
+# ---- PyInstaller build ----------------------------------------------------
+build/
+dist/
+*.spec
+CBCT_App
+CBCT_App.exe
+
+# ---- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.ipynb_checkpoints/
+
+# ---- OS / editor ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+#--- nnUNet -----
+training/nnUNet/

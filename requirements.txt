@@ -1,0 +1,18 @@
+# Core
+nibabel>=5.0
+numpy>=1.24
+scipy>=1.10
+scikit-image>=0.21
+PyYAML>=6.0
+
+# Segmentation. nnunetv2 pulls in torch; for the in-process Python backend
+# (DentalSegmentator) install a CUDA-matched torch first if you need GPU
+# (see https://pytorch.org), then nnunetv2.
+nnunetv2>=2.4
+
+# UI + previews
+streamlit>=1.40
+matplotlib>=3.7
+
+# Optional: build a double-click .exe launcher (build_exe.bat)
+# pyinstaller>=6.0

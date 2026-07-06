@@ -1,0 +1,41 @@
+# ============================================================================
+# ToothFairy2 configuration (per-tooth FDI; train-it-yourself model)
+# For the ready-to-use DentalSegmentator model see config.dentalsegmentator.yaml
+# ============================================================================
+
+nnunet:
+  backend: "cli"
+  dataset_id: "112"
+  configuration: "3d_fullres"
+  folds: "all"
+  trainer: null
+  plans: null
+  results_dir: null
+  extra_args: null
+
+# ToothFairy2: 1=lower jawbone 2=upper jawbone ; teeth = FDI 11-48
+arches:
+  lower:
+    name: "Mandible"
+    bone_labels: [1]                                    # lower jawbone
+    teeth_labels: [31,32,33,34,35,36,37,38, 41,42,43,44,45,46,47,48]
+    crown_direction: "superior"
+  upper:
+    name: "Maxilla & Upper bone"
+    bone_labels: [2]                                    # upper jawbone
+    teeth_labels: [11,12,13,14,15,16,17,18, 21,22,23,24,25,26,27,28]
+    crown_direction: "inferior"
+
+dominance:
+  metric: "bone"
+
+root:
+  # Root = the part of each tooth the alveolar bone wraps around, decided slice by
+  # slice. The root top lands at the bone surface (seamless), never floating above.
+  bone_close_mm: 1.0      # bridge thin bone gaps so a near-closed socket ring encloses
+  smooth_iter: 1          # morphological smoothing of the root edge (0 = off)
+  surface_smooth_mm: 0.7  # light Gaussian surface smoothing to soften the cut in 3D renders
+
+output:
+  teeth_name: "teeth"
+  root_name: "travecular"
