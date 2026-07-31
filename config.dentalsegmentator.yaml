@@ -12,7 +12,7 @@ nnunet:
   # >>> PUT YOUR DENTALSEGMENTATOR (Dataset111_453CT) FOLDER HERE <<<
   # This is the teeth+bone model, NOT the root model. Use forward slashes.
   # e.g. 'C:/Users/seoul/.../nnUNet_results/Dataset111_453CT/nnUNetTrainer__nnUNetPlans__3d_fullres'
-  model_dir: 'C:/Users/seoul/Desktop/Joontae/cbct-trabecular-pipeline/cbct-trabecular-pipeline/Dataset111_453CT/nnUNetTrainer__nnUNetPlans__3d_fullres'
+  model_dir: "C:/Users/seoul/Desktop/Joontae/cbct-trabecular-pipeline/cbct-trabecular-pipeline/Dataset111_453CT/nnUNetTrainer__nnUNetPlans__3d_fullres"
   folds: "0"
   checkpoint: "checkpoint_final.pth"
   device: "cuda"
@@ -39,7 +39,7 @@ root:
   method: "model"
   model_dir: "C:/Users/seoul/Desktop/Joontae/cbct-trabecular-pipeline/cbct-trabecular-pipeline/training/nnUNet/nnUNet_results/Dataset202_RootCBCT/nnUNetTrainer__nnUNetPlans__3d_fullres"
   folds: "0"                 # you trained fold 0 only
-  checkpoint: "checkpoint_final.pth"
+  checkpoint: "checkpoint_best.pth"
   device: "cuda"
   root_label: 1              # the root class id in the model output
 
